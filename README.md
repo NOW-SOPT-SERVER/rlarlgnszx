@@ -12,7 +12,7 @@
 # Keyword
 | Week | Description |
 | --- | --- |
-| 1 | this와 this(), Java의 Generic ,final, static, static final,  super, super() , SOLID ,스프링의 의존성 주입 방식 ,Java record  |
+| [1](https://crystalline-paper-4ea.notion.site/1-10cb65c1c69c4b0c8a4a3a7509926aa0) | this와 this(), Java의 Generic ,final, static, static final,  super, super() , SOLID ,스프링의 의존성 주입 방식 ,Java record  |
 | 2 |  |
 | 3 |  |
 | 4 |  |
