@@ -25,36 +25,5 @@ public class EditDeveleoper {
         @Max(20)
         private Integer experienceYears;
 
-        @NotNull
-        @Size(min=3,max=50,message= "Name is 3~50")
-        private String name;
-
-        @NotNull
-//        @Size(min=3,max=50,message= "memberID is 3~50")
-        private Long memberId;
-
-        @Min(19)
-        private Integer age;
-
-    }
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Builder
-    public static class Response {
-        private DeveloperLevel developerLevel;
-        private DeveloperSkillType developerSkillType;
-        private Integer experienceYears;
-        private Long memberId;
-
-        public static Response fromEntity(Developer developer) {
-            return Response.builder()
-                    .developerLevel(developer.getDeveloperLevel())
-                    .developerSkillType(developer.getDeveloperSkillType())
-                    .experienceYears(developer.getExperienceYears())
-                    .memberId(developer.getMemberID())
-                    .build();
-        }
     }
 }

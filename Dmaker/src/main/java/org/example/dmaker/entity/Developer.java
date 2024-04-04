@@ -2,6 +2,7 @@ package org.example.dmaker.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.dmaker.code.StatusCode;
 import org.example.dmaker.type.DeveloperLevel;
 import org.example.dmaker.type.DeveloperSkillType;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,6 +30,9 @@ public class Developer {
 
     @Enumerated(EnumType.STRING)
     private DeveloperSkillType developerSkillType;
+
+    @Enumerated(EnumType.STRING)
+    private StatusCode statusCode;
 
     private Integer experienceYears;
     private Long memberID;
