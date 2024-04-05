@@ -6,8 +6,6 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class PersonPerBankJoiner {
     private final Person person;
     private final Bank bank;
@@ -20,5 +18,15 @@ public class PersonPerBankJoiner {
         this.person = person;
         this.bank = bank;
         this.account = (person.hashCode() + bank.hashCode());
+        this.saving = .0;
+    }
+    @Override
+    public String toString() {
+        return
+                "person=" + person +
+                ", bank=" + bank +
+                ", account=" + account +
+                ", saving=" + saving
+                ;
     }
 }

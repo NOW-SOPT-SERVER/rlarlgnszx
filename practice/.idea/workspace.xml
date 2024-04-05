@@ -5,6 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="067d791f-ffdc-4b8d-b0ba-5b6cfc3a1b90" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/BankingOopApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/BankingOopApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/object/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/object/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/object/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/object/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/object/PersonPerBankJoiner.java" beforeDir="false" afterPath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/object/PersonPerBankJoiner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/service/ServiceProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/../banking_OOP/src/main/java/server/sopt/banking_oop/service/ServiceProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,27 +60,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.practice 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.PracticeApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kihoon/Desktop/spring/rlarlgnszx/practice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.practice 빌드.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.PracticeApplication.executor": "Run",
+    "git-widget-placeholder": "week1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/kihoon/Desktop/spring/rlarlgnszx/week1/practice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="PracticeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="practice.main" />
@@ -97,6 +102,8 @@
       <workItem from="1711863363043" duration="1408000" />
       <workItem from="1711945159602" duration="19000" />
       <workItem from="1711969693207" duration="204000" />
+      <workItem from="1712290403290" duration="53000" />
+      <workItem from="1712290478312" duration="37000" />
     </task>
     <servers />
   </component>
