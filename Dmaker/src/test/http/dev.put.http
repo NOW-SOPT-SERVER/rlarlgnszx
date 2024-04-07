@@ -1,9 +1,0 @@
-PUT http://localhost:8080/update/3
-Content-Type: application/json
-
-{
-  "developerLevel":"JUNGNIOR",
-  "developerSkillType":"FRONTEND",
-  "experienceYears": 8
-}
-

@@ -1,4 +1,0 @@
-DELETE http://localhost:8080/delete/1
-Accept: application/json
-
-
