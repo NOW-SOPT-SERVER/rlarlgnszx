@@ -8,25 +8,36 @@ import server.sopt.week2.dto.MemberFindDto;
 import server.sopt.week2.service.MemberService;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/member")
 public class MemberController {
     private final MemberService memberService;
+
     @PostMapping
-    public ResponseEntity createMember(@RequestBody MemberCreateDto memberCreateDto){
+    public ResponseEntity createMember(@RequestBody MemberCreateDto memberCreateDto) {
         return ResponseEntity.created(URI.create(memberService.createMember(memberCreateDto))).build();
     }
+
     @GetMapping("/{memberId}")
     public ResponseEntity<MemberFindDto> getMemberById(
             @PathVariable Long memberId
     ) {
         return ResponseEntity.ok(memberService.getMemberById(memberId));
     }
+
+
     @DeleteMapping("/{memberId}")
     public ResponseEntity deleteMember(@PathVariable Long memberId) {
         memberService.deleteMember(memberId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping()
+    public List<MemberFindDto> getAllMember(){
+        return memberService.getAllMember();
+    }
+
 }
