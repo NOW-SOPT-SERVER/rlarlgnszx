@@ -8,6 +8,9 @@ import server.sopt.week2.dto.MemberCreateDto;
 import server.sopt.week2.dto.MemberFindDto;
 import server.sopt.week2.repo.MemberRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -24,6 +27,12 @@ public class MemberService {
 
     public MemberFindDto getMemberById(Long memberId) {
         return MemberFindDto.of(findMemberById(memberId));
+    }
+
+    public List<MemberFindDto> getAllMember() {
+        return memberRepository.findAll()
+                .stream().map(MemberFindDto::of)
+                .collect(Collectors.toList());
     }
 
     @Transactional
