@@ -40,7 +40,7 @@ public class ProductController {
     }
 
 //    Product의 이름이나 dsecription, 가격등 변경가능
-    @PutMapping("/{productId}/edit")
+    @PatchMapping("/{productId}/edit")
     public ProductFindDto sellProduct(
             @PathVariable Long productId,
             @Valid @RequestBody ProductEdit.Request req
