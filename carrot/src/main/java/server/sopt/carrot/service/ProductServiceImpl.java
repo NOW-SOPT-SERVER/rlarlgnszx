@@ -34,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
                 .cellingStatus(CellingStatus.NOT_SOLD)
                 .itemName(req.getItemName())
                 .customerId(req.getCustomerId())
+                .itemDescription(req.getItemDescription())
                 .build();
         productRepository.save(product);
         return ProductCreate.Response.fromEntity(product);
@@ -63,6 +64,15 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice(req.getPrice());
         product.setItemDescription(req.getItemDescription());
         product.setItemName(req.getItemName());
+        return ProductFindDto.of(product);
+    }
+
+    @Override
+    @Transactional
+    public ProductFindDto soldProduct(Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("Not Found Product"));
+        product.setCellingStatus(CellingStatus.SOLD);
         return ProductFindDto.of(product);
     }
 }

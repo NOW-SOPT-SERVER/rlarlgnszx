@@ -16,4 +16,6 @@ public interface ProductService {
     List<ProductFindDto> getAllNotSellProduct();
 
     ProductFindDto editProduct(Long productId, ProductEdit.Request req);
+
+    ProductFindDto soldProduct(Long productId);
 }
