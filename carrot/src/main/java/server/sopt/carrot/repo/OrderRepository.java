@@ -1,8 +1,9 @@
 package server.sopt.carrot.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import server.sopt.carrot.entity.Customer;
-import server.sopt.carrot.entity.Order;
+import org.springframework.stereotype.Repository;
+import server.sopt.carrot.entity.OrderProcessor;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+@Repository
+public interface OrderRepository extends JpaRepository<OrderProcessor, Long> {
 }

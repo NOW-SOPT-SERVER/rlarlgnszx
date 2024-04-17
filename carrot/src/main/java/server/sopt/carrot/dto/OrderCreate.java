@@ -1,12 +1,8 @@
 package server.sopt.carrot.dto;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
-import server.sopt.carrot.entity.Customer;
-import server.sopt.carrot.entity.Order;
+import server.sopt.carrot.entity.OrderProcessor;
 
 public class OrderCreate {
     @Getter
@@ -19,8 +15,6 @@ public class OrderCreate {
         private Long customerWhoSellId;
         @NotNull
         private Long customerWhoBuyId;
-        @NotNull
-        private Long productId;
     }
     @Getter
     @Setter
@@ -31,11 +25,11 @@ public class OrderCreate {
         private Long customerWhoSellId;
         private Long customerWhoBuyId;
         private Long productId;
-        public static Response fromEntity(Order order) {
+        public static Response fromEntity(OrderProcessor orderProcessor) {
             return Response.builder()
-                    .customerWhoBuyId(order.getCustomerWhoBuyId())
-                    .customerWhoSellId(order.getCustomerWhoSellId())
-                    .productId(order.getProductId())
+                    .customerWhoBuyId(orderProcessor.getCustomerWhoBuyId())
+                    .customerWhoSellId(orderProcessor.getCustomerWhoSellId())
+                    .productId(orderProcessor.getProductId())
                     .build();
         }
     }
