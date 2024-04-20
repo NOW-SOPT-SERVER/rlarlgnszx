@@ -10,7 +10,7 @@ import java.io.IOException;
 @Getter
 @Setter
 //@NoArgsConstructor
-public abstract  class ServiceProduct {
+public abstract class ServiceProduct {
     public abstract void deposit(Person person,Double money) throws IOException;
 
     public abstract void savings(Person person, Double money) throws IOException;
