@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.sopt.week2.domain.Member;
+import server.sopt.week2.dto.ErrorMessage;
 import server.sopt.week2.dto.MemberCreateDto;
 import server.sopt.week2.dto.MemberFindDto;
+import server.sopt.week2.exception.NotFoundException;
 import server.sopt.week2.repo.MemberRepository;
 
 import java.util.List;
@@ -38,5 +40,10 @@ public class MemberService {
     @Transactional
     public void deleteMember(Long memberId) {
         memberRepository.delete(findMemberById(memberId));
+    }
+
+    public Member findById(Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND_BY_ID_EXCEPTION));
     }
 }
