@@ -6,22 +6,28 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.sopt.week2.dto.BlogCreateRequest;
-import server.sopt.week2.dto.BlogTitleUpdateRequeset;
-import server.sopt.week2.dto.SuccessMessage;
-import server.sopt.week2.dto.SuccessStatusResponse;
+import server.sopt.week2.dto.blog.BlogCreateRequest;
+import server.sopt.week2.dto.blog.BlogFindDto;
+import server.sopt.week2.dto.blog.BlogTitleUpdateRequeset;
 import server.sopt.week2.service.BlogService;
+import server.sopt.week2.success.SuccessMessage;
+import server.sopt.week2.success.SuccessStatusResponse;
 
-import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class BlogController {
 
-
     private final BlogService blogService;
 
+    @GetMapping("/blogs")
+    public List<BlogFindDto> getAllBlog(){
+        return blogService.getAllBlog();
+    }
+
+    @Transactional
     @PostMapping("/blog")
     public ResponseEntity<SuccessStatusResponse> createBlog(
             @RequestHeader Long memberId,
@@ -29,7 +35,7 @@ public class BlogController {
         return ResponseEntity.status(
                         HttpStatus.CREATED
                 )
-                .header("Locahtion", blogService.create(memberId, blogCreateRequest))
+                .header("Location", blogService.create(memberId, blogCreateRequest))
                 .body(SuccessStatusResponse.of(SuccessMessage.BLOG_CREATE_SUCCESS));
 
     }
@@ -41,6 +47,12 @@ public class BlogController {
             @RequestBody @Valid BlogTitleUpdateRequeset blogTitleUpdateRequeset
     ){
         blogService.updateTtile(blogId, blogTitleUpdateRequeset);
-        return ResponseEntity.noContent().build();
+//        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(
+                HttpStatus.OK
+        ).body(
+                SuccessStatusResponse.of(SuccessMessage.BLOG_UPDATE_SUCCESS)
+        );
     }
+
 }
