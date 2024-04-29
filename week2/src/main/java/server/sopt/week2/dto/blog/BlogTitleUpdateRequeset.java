@@ -1,4 +1,4 @@
-package server.sopt.week2.dto;
+package server.sopt.week2.dto.blog;
 
 import jakarta.validation.constraints.Size;
 
