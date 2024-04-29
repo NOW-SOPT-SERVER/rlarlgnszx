@@ -4,17 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import server.sopt.week2.domain.Member;
-import server.sopt.week2.dto.BlogCreateRequest;
+import server.sopt.week2.dto.blog.BlogCreateRequest;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 //@EntityListeners(AuditingEntityListener.class)
 public class Blog extends BaseTimeEntity {
@@ -22,15 +18,23 @@ public class Blog extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     @OneToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    @Setter
     @Column(length = 200)
     private String title;
 
+
+    @Setter
     private String description;
 
+    @OneToMany(mappedBy = "blog",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Post> posts = new ArrayList<>();
+
     private Blog(Member member, String title, String description) {
+
         this.member = member;
         this.title = title;
         this.description = description;
