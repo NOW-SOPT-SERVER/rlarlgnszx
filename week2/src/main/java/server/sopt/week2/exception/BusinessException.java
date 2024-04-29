@@ -1,9 +1,11 @@
 package server.sopt.week2.exception;
 
-import server.sopt.week2.dto.ErrorMessage;
+import lombok.Getter;
+import server.sopt.week2.error.ErrorMessage;
 
+@Getter
 public class BusinessException extends RuntimeException {
-    private ErrorMessage errorMessage;
+    private final ErrorMessage errorMessage;
     public BusinessException(ErrorMessage errorMessage) {
         super(errorMessage.getMessage());
         this.errorMessage = errorMessage;
