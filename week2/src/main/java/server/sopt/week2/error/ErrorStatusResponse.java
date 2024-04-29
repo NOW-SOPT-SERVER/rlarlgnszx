@@ -1,4 +1,4 @@
-package server.sopt.week2.dto;
+package server.sopt.week2.error;
 
 public record ErrorStatusResponse(int status, String message) {
     public static ErrorStatusResponse of(int status, String message) {
