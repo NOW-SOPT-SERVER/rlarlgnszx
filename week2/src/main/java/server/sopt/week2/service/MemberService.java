@@ -4,9 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.sopt.week2.domain.Member;
-import server.sopt.week2.dto.ErrorMessage;
-import server.sopt.week2.dto.MemberCreateDto;
-import server.sopt.week2.dto.MemberFindDto;
+import server.sopt.week2.error.ErrorMessage;
+import server.sopt.week2.dto.member.MemberCreateDto;
+import server.sopt.week2.dto.member.MemberFindDto;
+import server.sopt.week2.exception.BusinessException;
 import server.sopt.week2.exception.NotFoundException;
 import server.sopt.week2.repo.MemberRepository;
 
@@ -24,7 +25,7 @@ public class MemberService {
     }
     private Member findMemberById(Long memberId) {
         return memberRepository.findById(memberId)
-                .orElseThrow(()-> new EntityNotFoundException("NO MATCH ID FOR USER"));
+                .orElseThrow(()-> new BusinessException(ErrorMessage.MEMBER_NOT_FOUND_BY_ID_EXCEPTION));
     }
 
     public MemberFindDto getMemberById(Long memberId) {
@@ -44,6 +45,6 @@ public class MemberService {
 
     public Member findById(Long memberId) {
         return memberRepository.findById(memberId)
-                .orElseThrow(() -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND_BY_ID_EXCEPTION));
+                .orElseThrow(() -> new BusinessException(ErrorMessage.MEMBER_NOT_FOUND_BY_ID_EXCEPTION));
     }
 }
