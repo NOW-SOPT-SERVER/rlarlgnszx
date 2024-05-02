@@ -1,8 +1,6 @@
-package server.sopt.carrot.dto;
+package server.sopt.carrot.dto.product;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import server.sopt.carrot.constant.CellingStatus;
 
 public class ProductEdit {
     @Getter
