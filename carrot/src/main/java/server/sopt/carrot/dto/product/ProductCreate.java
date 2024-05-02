@@ -1,20 +1,24 @@
-package server.sopt.carrot.dto;
+package server.sopt.carrot.dto.product;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import server.sopt.carrot.constant.CellingStatus;
+import server.sopt.carrot.constant.Place;
+import server.sopt.carrot.entity.Customer;
 import server.sopt.carrot.entity.Product;
 
+@Getter
 public class ProductCreate
 {
+    @Builder
     @Getter
-    @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    @Builder
-
     public static class Request {
         @NotNull
         @Min(-1)
@@ -27,32 +31,38 @@ public class ProductCreate
         @NotNull
         private Long customerId;
 
-        @NotNull
-        private CellingStatus cellingStatus;
+//        @NotNull
+//        private CellingStatus cellingStatus;
 
         @NotNull
         @Size(min=1,max=512,message= "Description is 3~50")
         private String itemDescription;
+
+        @NotNull
+        @Enumerated(EnumType.STRING)
+        private Place place;
     }
     @Getter
-    @Setter
+    @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    @Builder
     public static class Response {
         private Integer price;
         private String itemName;
-        private Long customerId;
+//       후에 id값으로 바꿀수도있음 문제발생시
+        private Customer customer;
         private String itemDescription;
         private CellingStatus cellingStatus;
+        private Place place;
 
         public static Response fromEntity(Product product) {
             return Response.builder()
                     .price(product.getPrice())
                     .itemName(product.getItemName())
                     .cellingStatus(product.getCellingStatus())
-                    .customerId(product.getCustomerId())
+                    .customer(product.getCustomer())
                     .itemDescription(product.getItemDescription())
+                    .place(product.getPlace())
                     .build();
         }
 
