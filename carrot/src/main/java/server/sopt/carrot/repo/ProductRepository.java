@@ -15,4 +15,5 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findProductsByCustomerId(Long customerId);
 
     List<Product> findProductsByCellingStatusEquals(CellingStatus cellingStatus);
+    List<Product> findProductsByPlace(Place place);
 }
