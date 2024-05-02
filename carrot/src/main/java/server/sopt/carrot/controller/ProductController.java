@@ -3,8 +3,14 @@ package server.sopt.carrot.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.sopt.carrot.dto.*;
+import server.sopt.carrot.constant.Place;
+import server.sopt.carrot.dto.product.ProductCreate;
+import server.sopt.carrot.dto.product.ProductEdit;
+import server.sopt.carrot.dto.product.ProductFindDto;
+import server.sopt.carrot.dto.product.ProductGoodUpdateDto;
+import server.sopt.carrot.mapper.ProductMapper;
 import server.sopt.carrot.service.ProductService;
 
 import java.util.List;
@@ -14,7 +20,7 @@ import java.util.List;
 @RequestMapping("/api/v1/product")
 public class ProductController {
     private final ProductService productService;
-
+    private final ProductMapper productMapper;
     // 새로운 상품을 등록해줘!
     @PostMapping("")
     public ProductCreate.Response createProduct(
@@ -22,21 +28,41 @@ public class ProductController {
     ) {
         return productService.createProductwithCustomerId(req);
     }
-
     // 특정 상품 조회
+    @PatchMapping("/{productId}")
+    public ProductFindDto productGoodUporDown(
+            @PathVariable Long productId,
+            @Valid @RequestBody ProductGoodUpdateDto productGoodUpdateDto
+    ) {
+        return productService.productGoodUporDown(productId,productGoodUpdateDto);
+    }
+
     @GetMapping("/{productId}")
     public ProductFindDto getProduct(
             @PathVariable Long productId
     ) {
-        return productService.getProductById(productId);
+        return productMapper.toProductFindDto(productService.findProductById(productId));
+    }
+
+    @GetMapping("")
+    public List<ProductFindDto> getAllProductbyCustomerId(
+            @RequestHeader Long customerId
+    ) {
+        return productService.getAllProductByCustomerId(customerId);
     }
 
 
-    // 구매안한 상품들을 전부 보여줘! : 사용자 view에 사용할려고 ? 후에 개선한다면 ?
     @GetMapping("/not-sold")
     public List<ProductFindDto> getNotSoldProducts(
     ) {
         return productService.getAllNotSellProduct();
+    }
+
+    @GetMapping("/place/{place}")
+    public List<ProductFindDto> getProductByPlace(
+            @PathVariable Place place
+    ) {
+        return productService.getProductbyPlace(place);
     }
 
 //    Product의 이름이나 dsecription, 가격등 변경가능
