@@ -3,8 +3,8 @@ package server.sopt.week2.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import server.sopt.week2.dto.MemberCreateDto;
-import server.sopt.week2.dto.MemberFindDto;
+import server.sopt.week2.dto.member.MemberCreateDto;
+import server.sopt.week2.dto.member.MemberFindDto;
 import server.sopt.week2.service.MemberService;
 
 import java.net.URI;

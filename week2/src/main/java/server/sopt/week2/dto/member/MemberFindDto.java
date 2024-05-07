@@ -1,4 +1,4 @@
-package server.sopt.week2.dto;
+package server.sopt.week2.dto.member;
 
 import server.sopt.week2.domain.Member;
 import server.sopt.week2.domain.Part;
