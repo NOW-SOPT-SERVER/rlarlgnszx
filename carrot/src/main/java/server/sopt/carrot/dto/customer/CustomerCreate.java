@@ -1,10 +1,11 @@
-package server.sopt.carrot.dto;
+package server.sopt.carrot.dto.customer;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.http.ResponseEntity;
 import server.sopt.carrot.entity.Customer;
 
 public class CustomerCreate{
@@ -15,14 +16,13 @@ public class CustomerCreate{
     @Builder
     public static class Request {
         @NotNull
-        @Min(-1)
+        @Min(0)
         @Max(99)
         private Integer age;
 
         @NotNull
         @Size(min=3,max=50,message= "Name is 3~50")
         private String name;
-
     }
     @Getter
     @Setter

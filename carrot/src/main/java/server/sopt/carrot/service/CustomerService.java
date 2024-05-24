@@ -1,17 +1,16 @@
 package server.sopt.carrot.service;
 
-import server.sopt.carrot.dto.CustomerCreate;
-import server.sopt.carrot.dto.CustomerFindDto;
-import server.sopt.carrot.dto.ProductFindDto;
+import server.sopt.carrot.dto.customer.CustomerCreate;
+import server.sopt.carrot.dto.customer.CustomerFindDto;
+import server.sopt.carrot.dto.product.ProductFindDto;
 import server.sopt.carrot.entity.Customer;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerService {
-    CustomerFindDto getCustomerById(Long customerId);
-
+    List<CustomerFindDto> getAllCustomer();
+    Customer getCustomerById(Long customerId);
     CustomerCreate.Response createCustomer(CustomerCreate.Request req);
-
-    List<ProductFindDto> getCustomerProducts(Long customerId);
-
+//    List<ProductFindDto> getCustomerProducts(Long customerId);
 }

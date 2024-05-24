@@ -12,8 +12,6 @@ public class OrderCreate {
     @Builder
     public static class Request {
         @NotNull
-        private Long customerWhoSellId;
-        @NotNull
         private Long customerWhoBuyId;
     }
     @Getter
