@@ -1,9 +1,9 @@
 package server.sopt.week2.common;
 import org.hibernate.JDBCException;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -11,6 +11,7 @@ import server.sopt.week2.error.ErrorMessage;
 import server.sopt.week2.error.ErrorStatusResponse;
 import server.sopt.week2.exception.BusinessException;
 import server.sopt.week2.exception.NotFoundException;
+import server.sopt.week2.exception.UnauthorizedException;
 
 import java.util.Objects;
 
@@ -23,6 +24,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorStatusResponse.of(HttpStatus.BAD_REQUEST.value(),Objects.requireNonNull(e.getBindingResult().getFieldError().getDefaultMessage())));
     }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    protected ResponseEntity<ErrorStatusResponse> handlerUnauthorizedException(UnauthorizedException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(ErrorStatusResponse.of(e.getErrorMessage().getStatus(), e.getErrorMessage().getMessage()));
+    }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     protected ResponseEntity<ErrorStatusResponse> blogIdDuplicateException(DataIntegrityViolationException e) {

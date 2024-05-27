@@ -17,7 +17,7 @@ public enum ErrorMessage {
     POST_NOT_FOUND_BY_ID_EXCEPTION(HttpStatus.NOT_FOUND.value(), "ID에 해당하는 포스트가 없습니다"),
     BLOG_ID_DUPLICATED_EXCEPTION(HttpStatus.BAD_REQUEST.value(), "블로그가 이미 존재합니다"),
     POST_AND_BLOG_NOT_MATCH_EXCEPTION(HttpStatus.BAD_REQUEST.value(), "포스트와 블로그 ID 가일치하지 않습니다."),
-
+    JWT_UNAUTHORIZED_EXCEPTION(HttpStatus.UNAUTHORIZED.value(), "사용자의 로그인 검증을 실패했습니다."),
     ;
     private final int status;
     private final String message;
