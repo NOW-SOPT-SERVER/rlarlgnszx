@@ -1,4 +1,4 @@
-package server.sopt.week2.controller;
+package server.sopt.week2.controller.post;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,7 +21,6 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
-
     @Transactional
     @PostMapping("/post")
     public ResponseEntity<SuccessStatusResponse> createPost(

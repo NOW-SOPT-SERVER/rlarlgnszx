@@ -1,11 +1,13 @@
-package server.sopt.week2.controller;
+package server.sopt.week2.controller.blog;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import server.sopt.week2.auth.PrincipalHandler;
 import server.sopt.week2.dto.blog.BlogCreateRequest;
 import server.sopt.week2.dto.blog.BlogFindDto;
 import server.sopt.week2.dto.blog.BlogTitleUpdateRequeset;
@@ -13,6 +15,8 @@ import server.sopt.week2.service.BlogService;
 import server.sopt.week2.success.SuccessMessage;
 import server.sopt.week2.success.SuccessStatusResponse;
 
+import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,6 +25,7 @@ import java.util.List;
 public class BlogController {
 
     private final BlogService blogService;
+    private final PrincipalHandler principalHandler;
 
     @GetMapping("/blogs")
     public List<BlogFindDto> getAllBlog(){
@@ -30,18 +35,14 @@ public class BlogController {
     @Transactional
     @PostMapping("/blog")
     public ResponseEntity<SuccessStatusResponse> createBlog(
-            @RequestHeader Long memberId,
-            @RequestBody BlogCreateRequest blogCreateRequest) {
-        return ResponseEntity.status(
-                        HttpStatus.CREATED
-                )
-                .header("Location", blogService.create(memberId, blogCreateRequest))
-                .body(SuccessStatusResponse.of(SuccessMessage.BLOG_CREATE_SUCCESS));
-
+            @ModelAttribute  BlogCreateRequest blogCreateRequest
+    ) {
+        return ResponseEntity.created(URI.create(blogService.create(
+                principalHandler.getUserIdFromPrincipal(), blogCreateRequest))).build();
     }
 
     @Transactional
-    @PatchMapping("/blog/{blogId}/title")
+    @PatchMapping("/{blogId}/title")
     public ResponseEntity updateBlogTitle(
             @PathVariable Long blogId,
             @RequestBody @Valid BlogTitleUpdateRequeset blogTitleUpdateRequeset
@@ -55,4 +56,12 @@ public class BlogController {
         );
     }
 
+    @Transactional
+    @DeleteMapping("blog/{blogId}")
+    public ResponseEntity<Void> deleteBlogImageUrl(
+        @PathVariable Long blogId
+    ) throws IOException {
+        blogService.deleteBlogImageUrl(blogId);
+        return ResponseEntity.ok().build();
+    }
 }

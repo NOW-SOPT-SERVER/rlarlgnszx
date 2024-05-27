@@ -9,7 +9,6 @@ public record MemberCreateDto(
         @Size(max = 6, message = "최대 글자 6글자")
         String name,
         Part part,
-
         @Min(7)
         int age)
 {}

@@ -33,16 +33,24 @@ public class Blog extends BaseTimeEntity {
     @OneToMany(mappedBy = "blog",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
-    private Blog(Member member, String title, String description) {
+    @Setter
+    private String imageUrl;
 
+    private Blog(Member member, String title, String imageUrl, String description) {
         this.member = member;
         this.title = title;
+        this.imageUrl = imageUrl;
         this.description = description;
     }
-    public static Blog create(Member member, BlogCreateRequest blogCreateRequest) {
-        return new Blog(member, blogCreateRequest.title(), blogCreateRequest.description());
-    }
 
+    public static Blog create(
+            Member member,
+            String title,
+            String description,
+            String imageUrl
+    ) {
+        return new Blog(member, title, imageUrl, description);
+    }
 
 //
 //    @CreatedDate
