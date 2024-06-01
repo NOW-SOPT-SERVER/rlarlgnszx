@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import server.sopt.week2.common.jwt.JwtTokenProvider;
+import server.sopt.week2.controller.auth.kakao.KaKaoDto;
 import server.sopt.week2.controller.auth.kakao.KakaoAuthService;
 import server.sopt.week2.controller.auth.kakao.KakaoTokenResponse;
 import server.sopt.week2.dto.UserJoinResponse;
@@ -22,11 +23,9 @@ public class AuthController {
     private final KakaoAuthService kakaoAuthService;
 
     @GetMapping("/login/kakao")
-    public ResponseEntity<KakaoTokenResponse> kakaoLogin(
+    public ResponseEntity<KaKaoDto.KakaoUserInfoResponse> kakaoLogin(
             @RequestParam(value = "code") String code
     ) {
-        KakaoTokenResponse res = kakaoAuthService.getAccessTokenFromKakao(code);
-        return ResponseEntity.ok().body(res);
+        return ResponseEntity.ok().body( kakaoAuthService.login(code));
     }
-
 }
