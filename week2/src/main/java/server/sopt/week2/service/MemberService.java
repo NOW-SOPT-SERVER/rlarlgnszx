@@ -1,9 +1,17 @@
 package server.sopt.week2.service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.sopt.week2.auth.UserAuthentication;
+import server.sopt.week2.auth.redis.domain.Token;
+import server.sopt.week2.auth.redis.service.RefreshTokenService;
+import server.sopt.week2.auth.repository.RedisTokenRepository;
+import server.sopt.week2.common.jwt.JwtTokenProvider;
 import server.sopt.week2.domain.Member;
+import server.sopt.week2.dto.UserJoinResponse;
 import server.sopt.week2.error.ErrorMessage;
 import server.sopt.week2.dto.member.MemberCreateDto;
 import server.sopt.week2.dto.member.MemberFindDto;
@@ -18,10 +26,21 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final RefreshTokenService refreshTokenService;
     @Transactional
-    public String createMember(MemberCreateDto memberCreateDto) {
+    public UserJoinResponse createMember(MemberCreateDto memberCreateDto) {
         Member member = memberRepository.save(Member.create(memberCreateDto.name(),memberCreateDto.part(),memberCreateDto.age()));
-        return member.getId().toString();
+        Long memberId = member.getId();
+        UserAuthentication userAuthentication = UserAuthentication.createUserAuthentication(memberId);
+        String accessToken = jwtTokenProvider.issueAccessToken(
+                userAuthentication
+        );
+        String refreshToken = jwtTokenProvider.issueRefreshToken(
+                userAuthentication
+        );
+        refreshTokenService.save(memberId,refreshToken);
+        return UserJoinResponse.of(accessToken, refreshToken,memberId.toString());
     }
     private Member findMemberById(Long memberId) {
         return memberRepository.findById(memberId)

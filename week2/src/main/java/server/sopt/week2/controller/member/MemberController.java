@@ -1,13 +1,17 @@
-package server.sopt.week2.controller;
+package server.sopt.week2.controller.member;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import server.sopt.week2.dto.UserJoinResponse;
 import server.sopt.week2.dto.member.MemberCreateDto;
 import server.sopt.week2.dto.member.MemberFindDto;
 import server.sopt.week2.service.MemberService;
 
-import java.net.URI;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -15,10 +19,17 @@ import java.util.List;
 @RequestMapping("/api/v1/member")
 public class MemberController {
     private final MemberService memberService;
-
+//    private final LogoutService authService;
     @PostMapping
-    public ResponseEntity createMember(@RequestBody MemberCreateDto memberCreateDto) {
-        return ResponseEntity.created(URI.create(memberService.createMember(memberCreateDto))).build();
+    public ResponseEntity<UserJoinResponse> postMember(
+            @RequestBody MemberCreateDto memberCreate
+    ) {
+        UserJoinResponse userJoinResponse = memberService.createMember(memberCreate);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("Location", userJoinResponse.userId())
+                .body(
+                        userJoinResponse
+                );
     }
 
     @GetMapping("/{memberId}")
@@ -40,4 +51,9 @@ public class MemberController {
         return memberService.getAllMember();
     }
 
+//    @PostMapping("/refreshs")
+//    public ResponseEntity logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        LogoutService.logout(request, response);
+//        return ResponseEntity.noContent().build();
+//    }
 }
