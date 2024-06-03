@@ -33,6 +33,8 @@ dependencies {
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0.Beta1'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
+	implementation("software.amazon.awssdk:bom:2.21.0")
+	implementation("software.amazon.awssdk:s3:2.21.0")
 }
 
 tasks.named('test') {
