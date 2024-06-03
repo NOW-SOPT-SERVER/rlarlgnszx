@@ -1,12 +1,12 @@
 package server.sopt.carrot.dto.product;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 import server.sopt.carrot.constant.CellingStatus;
 import server.sopt.carrot.constant.Place;
 import server.sopt.carrot.entity.Customer;
@@ -25,22 +25,23 @@ public class ProductCreate
         private Integer price;
 
         @NotNull
-        @Size(min=3,max=50,message= "Name is 3~50")
+        @Size(min = 3, max = 50, message = "Name is 3~50")
         private String itemName;
 
         @NotNull
         private Long customerId;
 
-//        @NotNull
-//        private CellingStatus cellingStatus;
 
         @NotNull
-        @Size(min=1,max=512,message= "Description is 3~50")
+        @Size(min = 1, max = 512, message = "Description is 3~50")
         private String itemDescription;
 
         @NotNull
         @Enumerated(EnumType.STRING)
         private Place place;
+
+        private MultipartFile image;
+
     }
     @Getter
     @Builder
